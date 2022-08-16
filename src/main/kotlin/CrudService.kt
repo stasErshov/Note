@@ -1,6 +1,6 @@
 interface CrudService<T> {
     fun add(elem: T) : T
-    fun edit(elem: T) : Boolean
+    fun edit(elem: T, text: String) : Boolean
     fun createComment(elem: T, comment: Comments) : Comments
     fun getComments(elem: T) : Array<Comments>
     fun getById(elemId: Int) : T

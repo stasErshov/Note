@@ -1,6 +1,6 @@
-class NoteService: CrudService<Note> {
+open class NoteService: CrudService<Note> {
     var notes = emptyArray<Note>()
-    private var comments = emptyArray<Comments>()
+    open var comments = emptyArray<Comments>()
     private var noteId: Int = 0
 
     override fun add(elem: Note): Note {
@@ -10,11 +10,11 @@ class NoteService: CrudService<Note> {
         return notes.last()
     }
 
-    override fun edit(elem: Note): Boolean {
+    override fun edit(elem: Note, text: String): Boolean {
         var flag = false
         for ((index, oneElem) in notes.withIndex())
             if (elem.id == oneElem.id) {
-                notes[index] = elem.copy(ownerId = oneElem.ownerId, date = oneElem.date)
+                notes[index] = elem.copy(ownerId = oneElem.ownerId, date = oneElem.date, text = text)
                 flag = true
             }
         return flag
@@ -29,7 +29,6 @@ class NoteService: CrudService<Note> {
 
     override fun getComments(elem: Note): Array<Comments> {
         var commentsGetArray = emptyArray<Comments>()
-        val comment : Comments
         for ((index, oneElem) in comments.withIndex())
             if (elem.id == oneElem.noteId) {
                 commentsGetArray += oneElem
@@ -59,6 +58,4 @@ class NoteService: CrudService<Note> {
             }
         return flag
     }
-
-
 }
