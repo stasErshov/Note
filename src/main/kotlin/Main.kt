@@ -23,7 +23,7 @@ fun main() {
     )
     var commentForFirst : Comments = Comments(1, 1, 2, "asdfasdf")
     val realized = NoteService()
-    realized.add(note1)
+    /*realized.add(note1)
     realized.add(note2)
     realized.createComment(note1, commentForFirst)
     for ((index, oneElem) in realized.comments.withIndex()) {
@@ -40,5 +40,5 @@ fun main() {
     println(isEqual)
     println(comments)
     println(realized.getComments(note1))
-
+*/
 }

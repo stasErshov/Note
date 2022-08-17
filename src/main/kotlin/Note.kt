@@ -1,7 +1,8 @@
 data class Comments(val noteId: Int,
                     val id: Int,
                     val ownerId : Int,
-                    val message: String)
+                    val message: String,
+                    val deleteComment: Boolean = false)
 
 data class Note(
     val id: Int,
@@ -11,5 +12,6 @@ data class Note(
     val date: Int,
     var comments: Int = 0,
     val readComments: Int,
-    val viewUrl: String
+    val viewUrl: String,
+    val deleteNote: Boolean = false
 )

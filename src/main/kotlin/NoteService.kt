@@ -10,52 +10,92 @@ open class NoteService: CrudService<Note> {
         return notes.last()
     }
 
-    override fun edit(elem: Note, text: String): Boolean {
+    override fun createComment(elem: Note, comment: Comments): Comments {
+        var size = comments.size
+        comments += comment.copy(noteId = elem.id, id = size + 1)
+        notes[elem.id].comments += 1
+        return comments.last()
+    }
+
+    override fun delete(elem: Note): Boolean {
         var flag = false
         for ((index, oneElem) in notes.withIndex())
             if (elem.id == oneElem.id) {
-                notes[index] = elem.copy(ownerId = oneElem.ownerId, date = oneElem.date, text = text)
-                flag = true
+                if(oneElem.deleteNote != true) {
+                    notes[index] = elem.copy(deleteNote = true)
+                    flag = true
+                    for ((index, oneElem) in comments.withIndex())
+                        if (elem.id == oneElem.noteId) {
+                            comments[index] = oneElem.copy(deleteComment = true)
+                        }
+                }
             }
         return flag
     }
 
-    override fun createComment(elem: Note, comment: Comments): Comments {
-        var size = comments.size
-        comments += comment.copy(id = size + 1)
-        elem.comments += 1
-        return comments.last()
+    override fun deleteComment(elem: Note, comment: Comments): Boolean {
+        var flag = false
+
+        for ((index, oneElem) in comments.withIndex())
+            if (elem.id == oneElem.noteId && comment.id == oneElem.id) {
+                comments[index] = oneElem.copy(deleteComment = true)
+                notes[elem.id].comments --
+                flag = true
+            }
+
+        return flag
     }
 
-    override fun getComments(elem: Note): Array<Comments> {
-        var commentsGetArray = emptyArray<Comments>()
-        for ((index, oneElem) in comments.withIndex())
-            if (elem.id == oneElem.noteId) {
-                commentsGetArray += oneElem
+    override fun edit(elem: Note, message: String): Note {
+        var flagNote = elem
+
+        for ((index, oneElem) in notes.withIndex())
+            if (elem.id == oneElem.id && oneElem.deleteNote != true) {
+                notes[index] = oneElem.copy(text = message)
             }
-        return commentsGetArray
+        return flagNote
+    }
+
+    override fun editComment(elem: Note, comment: Comments, message: String): Comments {
+        var flagComments : Comments = comment
+        for ((index, oneElem) in comments.withIndex())
+            if (elem.id == oneElem.noteId && oneElem.id == comment.id) {
+                comments[index] = oneElem.copy(message = message)
+                flagComments = comments[index]
+            }
+        return flagComments
+    }
+
+    override fun get(userId: Int): Array<Note> {
+        var notesGetArray = emptyArray<Note>()
+        for ((index, oneElem) in notes.withIndex())
+            if (userId == oneElem.ownerId && oneElem.deleteNote != true) {
+                notesGetArray += oneElem
+            }
+        return notesGetArray
     }
 
     override fun getById(elemId: Int): Note {
         return notes[elemId]
     }
 
-    override fun get(userId: Int): Array<Note> {
-        var notesGetArray = emptyArray<Note>()
-        for ((index, oneElem) in notes.withIndex())
-            if (userId == oneElem.ownerId) {
-                notesGetArray += oneElem
+    override fun getComments(elem: Note): Array<Comments> {
+        var commentsGetArray = emptyArray<Comments>()
+        for ((index, oneElem) in comments.withIndex())
+            if (elem.id == oneElem.noteId && oneElem.deleteComment != true) {
+                commentsGetArray += oneElem
             }
-        return  notesGetArray
+        return commentsGetArray
     }
 
-    override fun editComment(elem: Note, idComment: Int, message: String): Boolean {
-        var flag = false
+    override fun restoreComment(elem: Note, comment: Comments): Comments {
+        var flagComment = comment
+
         for ((index, oneElem) in comments.withIndex())
-            if (elem.id == oneElem.noteId && idComment == oneElem.id) {
-                comments[index] = oneElem.copy(message = message)
-                flag = true
+            if (elem.id == oneElem.noteId && oneElem.deleteComment == true) {
+                comments[index] = oneElem.copy(deleteComment = false)
+                flagComment = comments[index]
             }
-        return flag
+        return flagComment
     }
 }

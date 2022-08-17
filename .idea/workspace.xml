@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e5097db-6891-41c9-b933-46140610431d" name="Changes" comment="Initial commit">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/CrudService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/CrudService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Note.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Note.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/NoteService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/NoteService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/NoteServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/NoteServiceTest.kt" afterDir="false" />
     </list>
@@ -44,6 +43,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -76,7 +80,7 @@
       <command value="gradle jacocoTestReport" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.Note [jacocoTestReport]">
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="Note [jacocoTestReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -205,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659099994267</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Initial commit">
+      <created>1660687023267</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660687023267</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
