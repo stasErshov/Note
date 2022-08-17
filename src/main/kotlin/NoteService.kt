@@ -13,7 +13,6 @@ open class NoteService: CrudService<Note> {
     override fun createComment(elem: Note, comment: Comments): Comments {
         var size = comments.size
         comments += comment.copy(noteId = elem.id, id = size + 1)
-        notes[elem.id].comments += 1
         return comments.last()
     }
 

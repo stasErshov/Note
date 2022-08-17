@@ -10,12 +10,4 @@ interface CrudService<T> {
     fun getComments(elem: T) : Array<Comments>
     fun restoreComment(elem: T, comment: Comments) : Comments
 
-    /*fun add(elem: T) : T
-    fun edit(elem: T, text: String) : Boolean
-    fun createComment(elem: T, comment: Comments) : Comments
-    fun getComments(elem: T) : Array<Comments>
-    fun getById(elemId: Int) : T
-    fun get(userId: Int) : Array<T>
-    fun editComment(elem: T, idComment: Int, message: String): Boolean*/
-
 }
