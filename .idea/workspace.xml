@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0e5097db-6891-41c9-b933-46140610431d" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/CrudService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/CrudService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/NoteService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/NoteService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/NoteServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/NoteServiceTest.kt" afterDir="false" />
@@ -109,27 +108,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Note [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="NoteServiceTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -153,7 +131,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="NoteServiceTest.getByIdImpl" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="NoteServiceTest.deleteTest1 (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -166,7 +144,30 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;NoteServiceTest.getByIdImpl&quot;" />
+            <option value="&quot;NoteServiceTest.deleteTest1&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="NoteServiceTest.getTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;NoteServiceTest.getTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -186,10 +187,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.NoteServiceTest (1)" />
-        <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.NoteServiceTest.getByIdImpl" />
         <item itemvalue="Gradle.Note [jacocoTestReport]" />
-        <item itemvalue="Gradle.Note [test]" />
+        <item itemvalue="Gradle.NoteServiceTest.deleteTest1 (1)" />
+        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Gradle.NoteServiceTest.getTest" />
       </list>
     </recent_temporary>
   </component>

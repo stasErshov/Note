@@ -1,17 +1,18 @@
+@Suppress("NAME_SHADOWING")
 open class NoteService: CrudService<Note> {
-    var notes = emptyArray<Note>()
+    private var notes = emptyArray<Note>()
     open var comments = emptyArray<Comments>()
     private var noteId: Int = 0
 
     override fun add(elem: Note): Note {
-        var size = notes.size
+        val size = notes.size
         noteId += notes.hashCode()
         notes += elem.copy(id = size + 1)
         return notes.last()
     }
 
     override fun createComment(elem: Note, comment: Comments): Comments {
-        var size = comments.size
+        val size = comments.size
         comments += comment.copy(noteId = elem.id, id = size + 1)
         return comments.last()
     }
@@ -20,10 +21,10 @@ open class NoteService: CrudService<Note> {
         var flag = false
         for ((index, oneElem) in notes.withIndex())
             if (elem.id == oneElem.id) {
-                if(oneElem.deleteNote != true) {
+                if(!oneElem.deleteNote) {
                     notes[index] = elem.copy(deleteNote = true)
                     flag = true
-                    for ((index, oneElem) in comments.withIndex())
+                    for ((index: Int, oneElem) in comments.withIndex())
                         if (elem.id == oneElem.noteId) {
                             comments[index] = oneElem.copy(deleteComment = true)
                         }
@@ -38,7 +39,6 @@ open class NoteService: CrudService<Note> {
         for ((index, oneElem) in comments.withIndex())
             if (elem.id == oneElem.noteId && comment.id == oneElem.id) {
                 comments[index] = oneElem.copy(deleteComment = true)
-                notes[elem.id].comments --
                 flag = true
             }
 
@@ -46,13 +46,12 @@ open class NoteService: CrudService<Note> {
     }
 
     override fun edit(elem: Note, message: String): Note {
-        var flagNote = elem
 
         for ((index, oneElem) in notes.withIndex())
-            if (elem.id == oneElem.id && oneElem.deleteNote != true) {
+            if (elem.id == oneElem.id && !oneElem.deleteNote) {
                 notes[index] = oneElem.copy(text = message)
             }
-        return flagNote
+        return elem
     }
 
     override fun editComment(elem: Note, comment: Comments, message: String): Comments {
@@ -67,8 +66,8 @@ open class NoteService: CrudService<Note> {
 
     override fun get(userId: Int): Array<Note> {
         var notesGetArray = emptyArray<Note>()
-        for ((index, oneElem) in notes.withIndex())
-            if (userId == oneElem.ownerId && oneElem.deleteNote != true) {
+        for (oneElem in notes)
+            if (userId == oneElem.ownerId && !oneElem.deleteNote) {
                 notesGetArray += oneElem
             }
         return notesGetArray
@@ -80,8 +79,8 @@ open class NoteService: CrudService<Note> {
 
     override fun getComments(elem: Note): Array<Comments> {
         var commentsGetArray = emptyArray<Comments>()
-        for ((index, oneElem) in comments.withIndex())
-            if (elem.id == oneElem.noteId && oneElem.deleteComment != true) {
+        for (oneElem in comments)
+            if (elem.id == oneElem.noteId && !oneElem.deleteComment) {
                 commentsGetArray += oneElem
             }
         return commentsGetArray
@@ -91,7 +90,7 @@ open class NoteService: CrudService<Note> {
         var flagComment = comment
 
         for ((index, oneElem) in comments.withIndex())
-            if (elem.id == oneElem.noteId && oneElem.deleteComment == true) {
+            if (elem.id == oneElem.noteId && oneElem.deleteComment) {
                 comments[index] = oneElem.copy(deleteComment = false)
                 flagComment = comments[index]
             }
