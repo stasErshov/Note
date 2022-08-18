@@ -35,10 +35,10 @@ class NoteServiceTest {
         readComments = 0,
         viewUrl = "aa"
     )
-    private var commentForFirst1 : Comments = Comments(1, 1, 2, "asdfasdf")
-    private var commentForFirst2 : Comments = Comments(1, 2, 2, "asdfasdf")
-    private var commentForSecond1 : Comments = Comments(2, 1, 2, "asdfasdf")
-    private var commentForSecond2 : Comments = Comments(2, 1, 2, "asdfasdf")
+    private var commentForFirst1 : Comments = Comments(1, 1, 2, "")
+    private var commentForFirst2 : Comments = Comments(1, 3, 2, "")
+    private var commentForSecond1 : Comments = Comments(2, 2, 2, "")
+    private var commentForSecond2 : Comments = Comments(2, 4, 2, "")
     private val realized = NoteService()
 
     @Test
@@ -66,15 +66,14 @@ class NoteServiceTest {
         realized.add(note1)
         realized.add(note2)
         realized.createComment(note1, commentForFirst1)
+        realized.createComment(note2, commentForSecond1)
         realized.createComment(note1, commentForFirst2)
         realized.createComment(note2, commentForSecond2)
-        realized.createComment(note2, commentForSecond1)
         realized.deleteComment(note1, commentForFirst2)
         var commentsGetArray = emptyArray<Comments>()
         commentsGetArray += commentForFirst1
         val arrTest = realized.getComments(note1)
-        val isEqels =  commentsGetArray.contentEquals(arrTest)
-        assertEquals(true, isEqels)
+        assertEquals(true, commentsGetArray.contentEquals(arrTest))
     }
 
     @Test
@@ -87,8 +86,7 @@ class NoteServiceTest {
         val arrTest = realized.get(1)
         var notesGetArray = emptyArray<Note>()
         notesGetArray += note1
-        val isEqels =  notesGetArray.contentEquals(arrTest)
-        assertEquals(true, isEqels)
+        assertEquals(true, notesGetArray.contentEquals(arrTest))
     }
 
     @Test
@@ -115,5 +113,40 @@ class NoteServiceTest {
         realized.delete(note1)
         val resTest = realized.delete(note1)
         assertEquals(false, resTest)
+    }
+
+    @Test
+    fun editTest(){
+        realized.add(note1)
+        realized.add(note2)
+        val textTest = realized.edit(note2, "new text").text
+        assertEquals("new text", textTest)
+    }
+
+    @Test
+    fun editCommentTest(){
+        realized.add(note1)
+        realized.add(note2)
+        realized.createComment(note1, commentForFirst1)
+        realized.createComment(note2, commentForSecond1)
+        realized.createComment(note1, commentForFirst2)
+        realized.createComment(note2, commentForSecond2)
+
+        val textTest = realized.editComment(note1, commentForFirst2, "new text").message
+        assertEquals("new text", textTest)
+    }
+
+    @Test
+    fun restoreCommentTest(){
+        realized.add(note1)
+        realized.add(note2)
+        realized.createComment(note1, commentForFirst1)
+        realized.createComment(note2, commentForSecond1)
+        realized.createComment(note1, commentForFirst2)
+        realized.createComment(note2, commentForSecond2)
+        realized.deleteComment(note2, commentForSecond2)
+
+        val textTest = realized.restoreComment(note2, commentForSecond2).deleteComment
+        assertEquals(false, textTest)
     }
 }

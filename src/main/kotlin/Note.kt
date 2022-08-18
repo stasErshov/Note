@@ -5,7 +5,7 @@ data class Comments(val noteId: Int,
                     val deleteComment: Boolean = false)
 
 data class Note(
-    val id: Int,
+    var id: Int,
     val ownerId: Int,
     val title: String,
     val text: String,

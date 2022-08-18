@@ -46,12 +46,13 @@ open class NoteService: CrudService<Note> {
     }
 
     override fun edit(elem: Note, message: String): Note {
-
+        var flagElem : Note = elem
         for ((index, oneElem) in notes.withIndex())
-            if (elem.id == oneElem.id && !oneElem.deleteNote) {
+            if (elem.id == oneElem.id) {
                 notes[index] = oneElem.copy(text = message)
+                flagElem = oneElem.copy(text = message)
             }
-        return elem
+        return flagElem
     }
 
     override fun editComment(elem: Note, comment: Comments, message: String): Comments {

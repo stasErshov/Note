@@ -1,5 +1,3 @@
-import NoteService.*
-
 fun main() {
 
 }
